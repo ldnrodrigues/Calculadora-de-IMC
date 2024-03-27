@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+
+<main>
+    <div class="container">
+
+        <h4 style="color: #031633; font-weight: bold; margin-top: 8rem;">Calculadora de IMC</h4><hr>
+
+        <p>Bem-vindo à Calculadora de Índice de Massa Corporal (IMC)! <br><br>
+            O Índice de Massa Corporal (IMC) é uma medida que utiliza o peso e a altura de uma pessoa para avaliar se ela está dentro de um intervalo considerado saudável. É uma 
+            ferramenta amplamente utilizada por profissionais de saúde para avaliar o risco de problemas de saúde relacionados ao peso.
+            Ao inserir seu peso e altura, irá ser calculado automaticamente seu IMC e fornecido uma classificação com base nos 
+            resultados. Com essa informação, você poderá ter uma melhor compreensão sobre sua condição física e fazer escolhas mais conscientes em relação à sua saúde. <br><br>
+            Preencha os campos abaixo com suas informações e clique no botão "Calcular IMC" para obter seu resultado.
+        </p>
+
+        <div class="d-flex align-items-center justify-content-center" style="margin-top: 2rem;">
+
+                <form id="imcForm" class="form-signin w-100 m-auto row">
+                    <div class="col">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome" placeholder="Ex. Jorge" oninput="validarCampos()">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="altura" class="form-label">Altura (em centímetros)</label>
+                        <input type="number" class="form-control" id="altura" placeholder="Ex. 1,80" oninput="validarCampos()">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="peso" class="form-label">Peso (em quilogramas)</label>
+                        <input type="number" class="form-control" id="peso" placeholder="Ex. 60,00" oninput="validarCampos()">
+                    </div>
+
+                    <div class="col-12 mt-4 d-flex justify-content-center">
+                        <button type="button" disabled onclick="calcularIMC()" id="calcularBtn" class="btn btn-light">Calcular IMC</button>
+                    </div>
+                </form>
+            </div>
+
+                <div id="resposta" class="d-flex align-items-center justify-content-center" style="margin-top: 1.5rem; margin-bottom: 1.5rem;"></div>
+
+                <div class="d-flex align-items-center justify-content-center mb-5">
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-color">
+                            <tr>
+                                <th scope="col" class="text-center">Peso</th>
+                                <th scope="col" class="text-center">Classificação</th>
+                                <th scope="col" class="text-center">Grau de Obesidade</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaIMC">
+                            <tr>
+                                <td class="text-center">abaixo de 16</td>
+                                <td class="text-center">Baixo peso muito grave</td>
+                                <td class="text-center">0</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">Entre 16 e 16,99</td>
+                                <td class="text-center">Baixo peso grave</td>
+                                <td class="text-center">0</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">Entre 16 e 16,99</td>
+                                <td class="text-center">Baixo peso grave</td>
+                                <td class="text-center">0</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">Entre 17 e 18,49</td>
+                                <td class="text-center">Baixo peso</td>
+                                <td class="text-center">0</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">Entre 18,50 e 24,99</td>
+                                <td class="text-center">Peso normal</td>
+                                <td class="text-center">0</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">Entre 25 e 29,99</td>
+                                <td class="text-center">Sobrepeso</td>
+                                <td class="text-center">0</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">Entre 30 e 34,99</td>
+                                <td class="text-center">Obesidade Grau I</td>
+                                <td class="text-center">1</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">Entre 35 e 39,99</td>
+                                <td class="text-center">Obesidade Grau II</td>
+                                <td class="text-center">2</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">Maior que 40</td>
+                                <td class="text-center">Obesidade Grau III</td>
+                                <td class="text-center">3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <div class="container text-center">
+            <div class="row">
+
+                <div class="col">
+                    <div class="titulo-footer">
+                        <p><strong>@Leonardo Rodrigues</strong></p>
+                    </div>
+                        <div class="contact">
+                            <p style="margin-right: 1.4rem; margin-bottom: 0;"><img src="Imagens/footer/email.png" alt="email-logo" width="20px" style="margin-bottom: 0.5rem;"><strong> E-mail para contato:</strong> <a href="mailto:lgllleonardo360@gmail.com" class="email">lglleonardo360@gmail.com</a></p>
+                            <p style="margin-right: 7.5rem; margin-bottom: 0;"><img src="Imagens/footer/ping.png" alt="ping-logo" width="25px" style="margin-bottom: 0.9rem;"> Gravataí, Rio Grande do Sul, Brasil</p>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <a class="redes-sociais"><strong>Redes Sociais</strong></a>
+                            <div class="icones">
+                                <a href="https://www.instagram.com/leozin_c7/" target="_blank">
+                            <img src="Imagens/redes_sociais/instagram.png" width="32" height="32" alt="Instagram logo"></a>
+                                <a href="#" target="_blank">
+                            <img src="Imagens/redes_sociais/linkedin.png" width="31" height="31" alt="Linkedin logo"></a>
+                        <a href="https://github.com/ldnrodrigues" target="_blank">
+                    <img src="Imagens/redes_sociais/github.png" width="31" height="31" alt="Github logo"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+
+    function calcularIMC() {
+        var nome = document.getElementById('nome').value;
+        var alturaEmMetros = parseFloat(document.getElementById('altura').value);
+        var peso = parseFloat(document.getElementById('peso').value);
+
+        var imc = peso / (alturaEmMetros * alturaEmMetros);
+
+        var classificacao;
+
+        if (imc < 16) {
+            classificacao = 'Baixo peso muito grave';
+        } else if (imc >= 16 && imc <= 16.99) {
+            classificacao = 'Baixo peso grave';
+        } else if (imc >= 17 && imc <= 18.49) {
+            classificacao = 'Baixo peso';
+        } else if (imc >= 18.50 && imc <= 24.99) {
+            classificacao = 'Peso normal';
+        } else if (imc >= 25 && imc <= 29.99) {
+            classificacao = 'Sobrepeso';
+        } else if (imc >= 30 && imc <= 34.99) {
+            classificacao = 'Obesidade grau I';
+        } else if (imc >= 35 && imc <= 39.99) {
+            classificacao = 'Obesidade Grau II';
+        } else if (imc > 40) {
+            classificacao = 'Obesidade grau III';
+        }
+
+        var resposta = nome + ', você possui índice de massa corporal igual a ' + imc.toFixed(2) + ', sendo classificado como ' + classificacao;
+
+        document.getElementById('resposta').innerHTML = resposta;
+    }
+
+    function validarCampos() {
+        var nome = document.getElementById('nome').value;
+        var altura = document.getElementById('altura').value;
+        var peso = document.getElementById('peso').value;
+        var btnCalcular = document.getElementById('calcularBtn');
+
+        if (nome && altura && peso) {
+            btnCalcular.disabled = false;
+        } else {
+            btnCalcular.disabled = true;
+        }
+    }
+
+</script>
+
+</body>
+</html>
